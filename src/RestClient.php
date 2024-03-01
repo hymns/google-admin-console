@@ -7,6 +7,8 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Hymns\GoogleAdminConsole\Directory\Domain;
 use Hymns\GoogleAdminConsole\Directory\DomainAlias;
+use Hymns\GoogleAdminConsole\Directory\Group;
+use Hymns\GoogleAdminConsole\Directory\GroupAlias;
 use Hymns\GoogleAdminConsole\Exception\RestException;
 
 class RestClient
@@ -88,5 +90,25 @@ class RestClient
     public function domainAlias(): DomainAlias
     {
         return new DomainAlias($this);
+    }
+
+    /**
+     * Group instance model
+     *
+     * @return mixed
+     */
+    public function group(): Group
+    {
+        return new Group($this);
+    }
+
+    /**
+     * Group Alias instance model
+     *
+     * @return mixed
+     */
+    public function groupAlias(): GroupAlias
+    {
+        return new GroupAlias($this);
     }
 }

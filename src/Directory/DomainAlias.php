@@ -15,11 +15,11 @@ class DomainAlias extends Directory
      */
     public function list(string $domainName)
     {
-        $parameters = [
+        $params = [
             'domain'  => $domainName
         ];
 
-        $response = $this->client->request('GET', 'customer/{customerID}/domainaliases', [], $parameters);
+        $response = $this->client->request('GET', 'customer/{customerID}/domainaliases', [], $params);
 
         return json_decode((string)$response->getBody());
     }
@@ -39,11 +39,11 @@ class DomainAlias extends Directory
             'parentDomainName' => $parentDomainName
         ];
 
-        $parameters = [
+        $params = [
             'domain' => $parentDomainName
         ];
 
-        $response = $this->client->request('POST', 'customer/{customerID}/domainaliases', $body, $parameters);
+        $response = $this->client->request('POST', 'customer/{customerID}/domainaliases', $body, $params);
         return json_decode((string)$response->getBody());
     }
 
@@ -57,11 +57,11 @@ class DomainAlias extends Directory
      */
     public function get(string $domainName, string $parentDomainName)
     {
-        $parameters = [
+        $params = [
             'domain' => $parentDomainName
         ];
 
-        $response = $this->client->request('GET', 'customer/{customerID}/domainaliases/' . $domainName, [], $parameters);
+        $response = $this->client->request('GET', 'customer/{customerID}/domainaliases/' . $domainName, [], $params);
 
         return json_decode((string)$response->getBody());
     }
@@ -76,11 +76,11 @@ class DomainAlias extends Directory
      */
     public function delete(string $domainName, string $parentDomainName)
     {
-        $parameters = [
+        $params = [
             'domain' => $parentDomainName
         ];
 
-        $response = $this->client->request('DELETE', 'customer/{customerID}/domainaliases/' . $domainName, [], $parameters);
+        $response = $this->client->request('DELETE', 'customer/{customerID}/domainaliases/' . $domainName, [], $params);
 
         return json_decode((string)$response->getBody());
     }

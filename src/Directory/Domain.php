@@ -15,11 +15,11 @@ class Domain extends Directory
      */
     public function list(string $domainName)
     {
-        $parameters = [
+        $params = [
             'domain'  => $domainName
         ];
 
-        $response = $this->client->request('GET', 'customer/{customerID}/domains', [], $parameters);
+        $response = $this->client->request('GET', 'customer/{customerID}/domains', [], $params);
 
         return json_decode((string)$response->getBody());
     }

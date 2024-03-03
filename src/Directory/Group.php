@@ -15,11 +15,11 @@ class Group extends Directory
      */
     public function list(string $domainName)
     {
-        $parameters = [
+        $params = [
             'domain'  => $domainName
         ];
 
-        $response = $this->client->request('GET', 'groups', [], $parameters);
+        $response = $this->client->request('GET', 'groups', [], $params);
 
         return json_decode((string)$response->getBody());
     }
@@ -74,7 +74,7 @@ class Group extends Directory
     /**
      * Deletes a group.
      *
-     * @link https://developers.google.com/admin-sdk/directory/reference/rest/v1/domains/delete
+     * @link https://developers.google.com/admin-sdk/directory/reference/rest/v1/groups/delete
      * @param string $groupId
      * @return array
      */

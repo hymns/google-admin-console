@@ -3,7 +3,6 @@
 namespace Hymns\GoogleAdminConsole;
 
 use Illuminate\Support\Facades\Config;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Hymns\GoogleAdminConsole\Directory\Domain;
 use Hymns\GoogleAdminConsole\Directory\DomainAlias;
@@ -37,7 +36,7 @@ class RestClient
      * @param array|null $formParameters
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws Exception\ClientException
+     * @throws Exception\RestException
      */
     public function request(string $method, string $uri, array $bodyParameters = null, array $formParameters = null)
     {
@@ -46,30 +45,29 @@ class RestClient
                 \GuzzleHttp\RequestOptions::BODY => json_encode($bodyParameters)
             ];
         } else {
-            $parameters = array();
+            $parameters = [];
         }
 
         $responseUri = str_replace('{customerID}', $this->customerID, $uri);
 
         if (\is_array($formParameters)) {
-            $params = array();
+            $params = [];
 
             foreach ($formParameters as $key => $value) {
                 $params[] = $key . '=' . $value;
             }
 
-            if ($params !== array()) {
+            if ($params !== []) {
                 $responseUri .= '?' . implode('&', $params);
             }
         }
 
         try {
-            return $this->guzzleClient->request($method, self::BASE_URL . $responseUri, $parameters);
-        } catch (ClientException $e) {
-            $response = json_decode($e->getResponse()->getBody());
-            throw new RestException($response->message, $e->getCode(), $e);
+            $response = $this->guzzleClient->request($method, self::BASE_URL . $responseUri, $parameters);
+            return $response->getBody();
         } catch (GuzzleException $e) {
-            throw new RestException($e->getResponse(), $e->getCode(), $e);
+            $response = $e->getResponse()->getBody()->getContents();
+            throw new RestException($response, $e->getCode());
         }
     }
 

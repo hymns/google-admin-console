@@ -2,6 +2,9 @@
 
 namespace Hymns\GoogleAdminConsole;
 
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Exception\ClientException;
+
 class Directory
 {
     /**

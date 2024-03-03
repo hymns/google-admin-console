@@ -19,9 +19,7 @@ class Domain extends Directory
             'domain'  => $domainName
         ];
 
-        $response = $this->client->request('GET', 'customer/{customerID}/domains', [], $params);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('GET', 'customer/{customerID}/domains', [], $params);
     }
 
     /**
@@ -37,8 +35,7 @@ class Domain extends Directory
             'domainName' => $domainName
         ];
 
-        $response = $this->client->request('POST', 'customer/{customerID}/domains', $body);
-        return json_decode((string)$response->getBody());
+        return $this->client->request('POST', 'customer/{customerID}/domains', $body);
     }
 
     /**
@@ -50,9 +47,7 @@ class Domain extends Directory
      */
     public function get(string $domainName)
     {
-        $response = $this->client->request('GET', 'customer/{customerID}/domains/' . $domainName);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('GET', 'customer/{customerID}/domains/' . $domainName);
     }
 
     /**
@@ -64,8 +59,6 @@ class Domain extends Directory
      */
     public function delete(string $domainName)
     {
-        $response = $this->client->request('DELETE', 'customer/{customerID}/domains/' . $domainName);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('DELETE', 'customer/{customerID}/domains/' . $domainName);
     }
 }

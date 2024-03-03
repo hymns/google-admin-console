@@ -15,9 +15,7 @@ class OrgUnit extends Directory
      */
     public function list()
     {
-        $response = $this->client->request('GET', 'customer/{customerID}/orgunits');
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('GET', 'customer/{customerID}/orgunits');
     }
 
     /**
@@ -40,8 +38,7 @@ class OrgUnit extends Directory
             'parentOrgUnitPath' => $parentOrgUnitPath
         ];
 
-        $response = $this->client->request('POST', 'customer/{customerID}/orgunits', $body, $params);
-        return json_decode((string)$response->getBody());
+        return $this->client->request('POST', 'customer/{customerID}/orgunits', $body, $params);
     }
 
     /**
@@ -53,9 +50,8 @@ class OrgUnit extends Directory
      */
     public function get(string $orgUnitId)
     {
-        $response = $this->client->request('GET', 'customer/{customerID}/orgunits/' . $orgUnitId);
+        return $this->client->request('GET', 'customer/{customerID}/orgunits/' . $orgUnitId);
 
-        return json_decode((string)$response->getBody());
     }
 
     /**
@@ -68,8 +64,7 @@ class OrgUnit extends Directory
      */
     public function update(string $orgUnitId, array $orgUnitInfo)
     {
-        $response = $this->client->request('PATCH', 'customer/{customerID}/orgunits/' . $orgUnitId, $orgUnitInfo);
-        return json_decode((string)$response->getBody());
+        return $this->client->request('PATCH', 'customer/{customerID}/orgunits/' . $orgUnitId, $orgUnitInfo);
     }
 
     /**
@@ -81,8 +76,6 @@ class OrgUnit extends Directory
      */
     public function delete(string $orgUnitId)
     {
-        $response = $this->client->request('DELETE', 'customer/{customerID}/orgunits/' . $orgUnitId);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('DELETE', 'customer/{customerID}/orgunits/' . $orgUnitId);
     }
 }

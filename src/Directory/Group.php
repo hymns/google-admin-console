@@ -19,9 +19,7 @@ class Group extends Directory
             'domain'  => $domainName
         ];
 
-        $response = $this->client->request('GET', 'groups', [], $params);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('GET', 'groups', [], $params);
     }
 
     /**
@@ -39,8 +37,7 @@ class Group extends Directory
             'email' => $groupEmail
         ];
 
-        $response = $this->client->request('POST', 'groups', $body);
-        return json_decode((string)$response->getBody());
+        return $this->client->request('POST', 'groups', $body);
     }
 
     /**
@@ -52,9 +49,7 @@ class Group extends Directory
      */
     public function get(string $groupId)
     {
-        $response = $this->client->request('GET', 'groups/' . $groupId);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('GET', 'groups/' . $groupId);
     }
 
     /**
@@ -67,8 +62,7 @@ class Group extends Directory
      */
     public function update(string $groupId, array $groupInfo)
     {
-        $response = $this->client->request('PATCH', 'groups/' . $groupId, $groupInfo);
-        return json_decode((string)$response->getBody());
+        return $this->client->request('PATCH', 'groups/' . $groupId, $groupInfo);
     }
 
     /**
@@ -80,8 +74,6 @@ class Group extends Directory
      */
     public function delete(string $groupId)
     {
-        $response = $this->client->request('DELETE', 'groups/' . $groupId);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('DELETE', 'groups/' . $groupId);
     }
 }

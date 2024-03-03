@@ -19,9 +19,7 @@ class DomainAlias extends Directory
             'domain'  => $domainName
         ];
 
-        $response = $this->client->request('GET', 'customer/{customerID}/domainaliases', [], $params);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('GET', 'customer/{customerID}/domainaliases', [], $params);
     }
 
     /**
@@ -43,8 +41,7 @@ class DomainAlias extends Directory
             'domain' => $parentDomainName
         ];
 
-        $response = $this->client->request('POST', 'customer/{customerID}/domainaliases', $body, $params);
-        return json_decode((string)$response->getBody());
+        return $this->client->request('POST', 'customer/{customerID}/domainaliases', $body, $params);
     }
 
     /**
@@ -61,9 +58,7 @@ class DomainAlias extends Directory
             'domain' => $parentDomainName
         ];
 
-        $response = $this->client->request('GET', 'customer/{customerID}/domainaliases/' . $domainName, [], $params);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('GET', 'customer/{customerID}/domainaliases/' . $domainName, [], $params);
     }
 
     /**
@@ -80,8 +75,6 @@ class DomainAlias extends Directory
             'domain' => $parentDomainName
         ];
 
-        $response = $this->client->request('DELETE', 'customer/{customerID}/domainaliases/' . $domainName, [], $params);
-
-        return json_decode((string)$response->getBody());
+        return $this->client->request('DELETE', 'customer/{customerID}/domainaliases/' . $domainName, [], $params);
     }
 }

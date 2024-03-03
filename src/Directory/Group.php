@@ -19,7 +19,7 @@ class Group extends Directory
             'domain'  => $domainName
         ];
 
-        $response = $this->client->request('GET', 'customer/{customerID}/groups', [], $params);
+        $response = $this->client->request('GET', 'groups', [], $params);
 
         return json_decode((string)$response->getBody());
     }
@@ -39,7 +39,7 @@ class Group extends Directory
             'email' => $groupEmail
         ];
 
-        $response = $this->client->request('POST', 'customer/{customerID}/groups', $body);
+        $response = $this->client->request('POST', 'groups', $body);
         return json_decode((string)$response->getBody());
     }
 
@@ -52,7 +52,7 @@ class Group extends Directory
      */
     public function get(string $groupId)
     {
-        $response = $this->client->request('GET', 'customer/{customerID}/groups/' . $groupId);
+        $response = $this->client->request('GET', 'groups/' . $groupId);
 
         return json_decode((string)$response->getBody());
     }
@@ -67,7 +67,7 @@ class Group extends Directory
      */
     public function update(string $groupId, array $groupInfo)
     {
-        $response = $this->client->request('PATCH', 'customer/{customerID}/groups/' . $groupId, $groupInfo);
+        $response = $this->client->request('PATCH', 'groups/' . $groupId, $groupInfo);
         return json_decode((string)$response->getBody());
     }
 
@@ -80,7 +80,7 @@ class Group extends Directory
      */
     public function delete(string $groupId)
     {
-        $response = $this->client->request('DELETE', 'customer/{customerID}/groups/' . $groupId);
+        $response = $this->client->request('DELETE', 'groups/' . $groupId);
 
         return json_decode((string)$response->getBody());
     }

@@ -9,6 +9,8 @@ use Hymns\GoogleAdminConsole\Directory\DomainAlias;
 use Hymns\GoogleAdminConsole\Directory\Group;
 use Hymns\GoogleAdminConsole\Directory\GroupAlias;
 use Hymns\GoogleAdminConsole\Directory\OrgUnit;
+use Hymns\GoogleAdminConsole\Directory\User;
+use Hymns\GoogleAdminConsole\Directory\UserAlias;
 use Hymns\GoogleAdminConsole\Exception\RestException;
 
 class RestClient
@@ -119,5 +121,25 @@ class RestClient
     public function organisation(): OrgUnit
     {
         return new OrgUnit($this);
+    }
+
+    /**
+     * User instance model
+     *
+     * @return mixed
+     */
+    public function user(): User
+    {
+        return new User($this);
+    }
+
+    /**
+     * User Alias instance model
+     *
+     * @return mixed
+     */
+    public function userAlias(): UserAlias
+    {
+        return new UserAlias($this);
     }
 }

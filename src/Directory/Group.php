@@ -76,4 +76,26 @@ class Group extends Directory
     {
         return $this->client->request('DELETE', 'groups/' . $groupId);
     }
+
+    /**
+     * Assign member to the group.
+     *
+     * @link https://developers.google.com/admin-sdk/directory/reference/rest/v1/groups/insert
+     * @param string $domainName
+     * @param string $groupId
+     * @param string $groupEmail
+     * @return array
+     */
+    public function assign(string $domainName, string $groupId, string $userId)
+    {
+        $params = [
+            'domain'  => $domainName
+        ];
+
+        $body = [
+            'id' => $userId
+        ];
+
+        return $this->client->request('POST', 'groups/' . $groupId . '/members', $body, $params);
+    }
 }

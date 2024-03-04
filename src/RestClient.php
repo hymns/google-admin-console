@@ -8,6 +8,7 @@ use Hymns\GoogleAdminConsole\Directory\Domain;
 use Hymns\GoogleAdminConsole\Directory\DomainAlias;
 use Hymns\GoogleAdminConsole\Directory\Group;
 use Hymns\GoogleAdminConsole\Directory\GroupAlias;
+use Hymns\GoogleAdminConsole\Directory\Member;
 use Hymns\GoogleAdminConsole\Directory\OrgUnit;
 use Hymns\GoogleAdminConsole\Directory\User;
 use Hymns\GoogleAdminConsole\Directory\UserAlias;
@@ -111,6 +112,16 @@ class RestClient
     public function groupAlias(): GroupAlias
     {
         return new GroupAlias($this);
+    }
+
+    /**
+     * Member instance model
+     *
+     * @return mixed
+     */
+    public function member(): Member
+    {
+        return new Member($this);
     }
 
     /**

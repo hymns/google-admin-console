@@ -30,7 +30,7 @@ class User extends Directory
      * @param array $userInfo
      * @return array
      */
-    public function create(string $domainName, string $userInfo)
+    public function create(string $domainName, array $userInfo)
     {
         $params = [
             'domain'  => $domainName

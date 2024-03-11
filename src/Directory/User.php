@@ -80,4 +80,16 @@ class User extends Directory
     {
         return $this->client->request('DELETE', 'users/' . $email);
     }
+
+    /**
+     * Undeletes a deleted user.
+     *
+     * @link https://developers.google.com/admin-sdk/directory/reference/rest/v1/users/undelete
+     * @param string $email
+     * @return array
+     */
+    public function undelete(string $email)
+    {
+        return $this->client->request('DELETE', 'users/' . $email . '/undelete');
+    }
 }

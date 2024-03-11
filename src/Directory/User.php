@@ -90,6 +90,6 @@ class User extends Directory
      */
     public function undelete(string $email)
     {
-        return $this->client->request('DELETE', 'users/' . $email . '/undelete');
+        return $this->client->request('POST', 'users/' . $email . '/undelete');
     }
 }

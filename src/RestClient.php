@@ -17,6 +17,7 @@ use Hymns\GoogleAdminConsole\Exception\RestException;
 class RestClient
 {
     private const BASE_URL = 'https://admin.googleapis.com/admin/directory/v1/';
+    private const APIS_URL = 'https://www.googleapis.com/groups/v1/';
 
     private $guzzleClient;
     private $customerID;
@@ -37,11 +38,12 @@ class RestClient
      * @param string     $uri
      * @param array|null $bodyParameters
      * @param array|null $formParameters
+     * @param boolean    $baseURL
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws Exception\RestException
      */
-    public function request(string $method, string $uri, array $bodyParameters = null, array $formParameters = null)
+    public function request(string $method, string $uri, array $bodyParameters = null, array $formParameters = null, $baseURL = true)
     {
         if (\is_array($bodyParameters)) {
             $parameters = [
@@ -66,7 +68,7 @@ class RestClient
         }
 
         try {
-            $response = $this->guzzleClient->request($method, self::BASE_URL . $responseUri, $parameters);
+            $response = $this->guzzleClient->request($method, ($baseURL ? self::BASE_URL : self::APIS_URL) . $responseUri, $parameters);
             return $response->getBody();
         } catch (GuzzleException $e) {
             $response = $e->getResponse()->getBody()->getContents();

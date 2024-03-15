@@ -92,4 +92,16 @@ class User extends Directory
     {
         return $this->client->request('POST', 'users/' . $email . '/undelete');
     }
+
+      /**
+     * Makes a user a super administrator.
+     *
+     * @link https://developers.google.com/admin-sdk/directory/reference/rest/v1/users/makeAdmin
+     * @param string $email
+     * @return array
+     */
+    public function makeAdmin(string $email)
+    {
+        return $this->client->request('POST', 'users/' . $email . '/makeAdmin');
+    }
 }

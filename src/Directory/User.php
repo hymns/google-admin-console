@@ -16,7 +16,7 @@ class User extends Directory
     public function list(string $domainName)
     {
         $params = [
-            'domain'  => $domainName
+            'domain' => $domainName
         ];
 
         return $this->client->request('GET', 'users', [], $params);
@@ -33,7 +33,7 @@ class User extends Directory
     public function create(string $domainName, array $userInfo)
     {
         $params = [
-            'domain'  => $domainName
+            'domain' => $domainName
         ];
 
         $body = $userInfo;
@@ -91,5 +91,17 @@ class User extends Directory
     public function undelete(string $email)
     {
         return $this->client->request('POST', 'users/' . $email . '/undelete');
+    }
+
+    /**
+     * Makes a user a super administrator.
+     *
+     * @link https://developers.google.com/admin-sdk/directory/reference/rest/v1/users/makeAdmin
+     * @param string $email
+     * @return array
+     */
+    public function makeAdmin(string $email)
+    {
+        return $this->client->request('POST', 'users/' . $email . '/makeAdmin');
     }
 }

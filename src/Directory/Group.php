@@ -98,4 +98,29 @@ class Group extends Directory
 
         return $this->client->request('POST', 'groups/' . $groupId . '/members', $body, $params);
     }
+
+    /**
+     * Retrieves a group's setting properties.
+     *
+     * @link https://developers.google.com/admin-sdk/groups-settings/v1/reference/groups/get
+     * @param string $groupId
+     * @return array
+     */
+    public function getSetting(string $groupId)
+    {
+        return $this->client->request('GET', 'groups/' . $groupId . '?alt=json', [], [], false);
+    }
+
+    /**
+     * Update a group's setting properties.
+     *
+     * @link https://developers.google.com/admin-sdk/groups-settings/v1/reference/groups/patch
+     * @param string $groupId
+     * @param array $groupSettings
+     * @return array
+     */
+    public function updateSetting(string $groupId, $groupSettings)
+    {
+        return $this->client->request('PATCH', 'groups/' . $groupId, $groupSettings, [], false);
+    }
 }

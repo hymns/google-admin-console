@@ -45,7 +45,7 @@ class RestClient
      */
     public function request(string $method, string $uri, array $bodyParameters = null, array $formParameters = null, $baseURL = true)
     {
-        if (\is_array($bodyParameters)) {
+        if (\is_array($bodyParameters) && !empty($bodyParameters)) {
             $parameters = [
                 \GuzzleHttp\RequestOptions::BODY => json_encode($bodyParameters)
             ];
